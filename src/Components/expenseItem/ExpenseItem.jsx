@@ -12,6 +12,7 @@ const ExpenseItem = (props) => {
         <p>${props.amount}</p>
       </div>
     </div>
+    //asdsad
   )
 }
 
