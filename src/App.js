@@ -1,4 +1,5 @@
-import './Components/expenseItem/ExpenseItem'
+import Header from './Components/header/Header'
+import NewExpenseForm from './Components/newExpenseForm/NewExpenseForm'
 import ExpenseItem from './Components/expenseItem/ExpenseItem'
 
 import './App.css'
@@ -32,6 +33,8 @@ function App() {
   ]
   return (
     <div className="App">
+      <Header />
+      <NewExpenseForm />
       {expenses.map((expense) => (
         <ExpenseItem
           title={expense.title}
