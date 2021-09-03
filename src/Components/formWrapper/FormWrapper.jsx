@@ -11,6 +11,9 @@ const FormWrapper = (props) => {
       id: Math.random().toString(),
     }
     console.log(expenseData)
+
+    //lifting data up to app.js
+    props.onAddExpense(expenseData)
   }
 
   return (

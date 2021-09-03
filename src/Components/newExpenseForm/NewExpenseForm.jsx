@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+// import { db } from '../../firebase/firebase.config'
+// import { collection, addDoc } from 'firebase/firestore'
 
 import './newExpenseForm.style.css'
 
@@ -40,7 +42,10 @@ const NewExpenseForm = (props) => {
       date: new Date(userInput.enteredDate + 'T00:00'),
     }
 
+    // hands off expense data to FormWrapper, then to App
     props.onSaveExpense(expenseData)
+
+    // reset form input values
     setUserInput({
       enteredTitle: '',
       enteredAmount: '',

@@ -31,10 +31,15 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ]
+
+  const onAddExpense = (expense) => {
+    console.log('in app.js')
+    console.log(expense)
+  }
   return (
     <div className="App">
       <Header />
-      <FormWrapper />
+      <FormWrapper onAddExpense={onAddExpense} />
       {expenses.map((expense) => (
         <ExpenseItem
           title={expense.title}
