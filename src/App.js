@@ -1,5 +1,5 @@
 import Header from './Components/header/Header'
-import NewExpenseForm from './Components/newExpenseForm/NewExpenseForm'
+import FormWrapper from './Components/formWrapper/FormWrapper'
 import ExpenseItem from './Components/expenseItem/ExpenseItem'
 
 import './App.css'
@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <NewExpenseForm />
+      <FormWrapper />
       {expenses.map((expense) => (
         <ExpenseItem
           title={expense.title}

@@ -3,10 +3,6 @@ import React, { useState } from 'react'
 import './newExpenseForm.style.css'
 
 const NewExpenseForm = (props) => {
-  //   const [inputTitle, setInputTitle] = useState('')
-  //   const [inputPrice, setInputPrice] = useState('')
-  //   const [inputDate, setInputDate] = useState(null)
-
   // eslint-disable-next-line no-unused-vars
   const [userInput, setUserInput] = useState({
     enteredTitle: '',
@@ -15,20 +11,23 @@ const NewExpenseForm = (props) => {
   })
 
   const titleChangeHandler = (e) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: e.target.value }
+    setUserInput({
+      ...userInput,
+      enteredTitle: e.target.value,
     })
   }
 
   const priceChangeHandler = (e) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredAmount: e.target.value }
+    setUserInput({
+      ...userInput,
+      enteredAmount: e.target.value,
     })
   }
 
   const dateChangeHandler = (e) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredDate: e.target.value }
+    setUserInput({
+      ...userInput,
+      enteredDate: e.target.value,
     })
   }
 
@@ -38,9 +37,15 @@ const NewExpenseForm = (props) => {
     const expenseData = {
       title: userInput.enteredTitle,
       amount: userInput.enteredAmount,
-      date: new Date(userInput.enteredDate),
+      date: new Date(userInput.enteredDate + 'T00:00'),
     }
-    console.log(expenseData)
+
+    props.onSaveExpense(expenseData)
+    setUserInput({
+      enteredTitle: '',
+      enteredAmount: '',
+      enteredDate: '',
+    })
   }
 
   return (
@@ -49,7 +54,12 @@ const NewExpenseForm = (props) => {
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label htmlFor="title-input">Title:</label>
-            <input id="title-input" type="text" onChange={titleChangeHandler} />
+            <input
+              value={userInput.enteredTitle}
+              id="title-input"
+              type="text"
+              onChange={titleChangeHandler}
+            />
           </div>
 
           <div className="new-expense__control">
@@ -57,6 +67,7 @@ const NewExpenseForm = (props) => {
             <input
               id="price-input"
               type="number"
+              value={userInput.enteredAmount}
               min="0.01"
               step="0.01"
               onChange={priceChangeHandler}
@@ -68,9 +79,10 @@ const NewExpenseForm = (props) => {
             <input
               id="date-input"
               type="date"
-              min="2019-01-01"
-              max="2025-12-31"
+              min="01/01/2019"
+              max="12/31/2031"
               onChange={dateChangeHandler}
+              value={userInput.enteredDate}
             />
           </div>
         </div>
